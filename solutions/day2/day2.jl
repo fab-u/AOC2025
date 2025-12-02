@@ -48,7 +48,22 @@ function test_divisors()
     end
 end
 
-test_divisors()
+function check_for_pattern(number::String, len)
+    for i in 1:(div(length(number), len)-1)
+        chunk = number[i*len + 1: (i+1)*len]
+        println(chunk, " ", number[1:len])
+        if chunk != number[1: len]
+            return false
+        end
+    end
+    return true
+end
+
+function test_check_for_pattern()
+    println(check_for_pattern("123123123", 3))
+    println(check_for_pattern("12341234", 4))
+end
+test_check_for_pattern()
 
 function part2()
     input = read("input.txt", String)
@@ -56,5 +71,23 @@ function part2()
     ranges = split(input, ",")
 
     sum = 0
+    for r in ranges
+        min, max = parse.(Int, split(r, "-"))
 
+        for i in min:max
+            istr = string(i) 
+            len = length(istr)
+            for divisor in divisors(len)
+                
+            end
+            if length(istr) % 2 == 0
+                midpoint = div(length(istr), 2)
+
+                if istr[begin: midpoint] == istr[midpoint+1: end]
+                    sum += parse(Int, istr)
+                end
+            end
+        end
+    end
+    println(sum)
 end
