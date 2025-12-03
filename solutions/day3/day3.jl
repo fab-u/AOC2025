@@ -1,5 +1,3 @@
-using BenchmarkTools
-
 string_parser(s) = parse.(Int, collect(s))
 banks = string_parser.(readlines("input.txt"))
 
@@ -17,5 +15,5 @@ function maximum_joltage(n_batteries)
     println(sum)
 end
 
-@btime maximum_joltage(2)
-@btime maximum_joltage(12)
+maximum_joltage(2)
+maximum_joltage(12)
